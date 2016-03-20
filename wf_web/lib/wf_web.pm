@@ -4,47 +4,107 @@ use strict;
 use warnings;
 use Cwd;
 use Sys::Hostname;
-use examples::simple_form;
-use examples::navbar_login;
-use examples::tabs;
-use examples::show_file;
-use examples::photo_gallery;
-use examples::markdown;
-use examples::template_plugins;
-use examples::error_handling;
-use examples::dynamic_content;
+use DBI;
+use DBD::SQLite;
+use Imager::QRCode;
 
 our $VERSION = '0.1';
 
+
+sub generateQRCode {
+
+    my $string = shift;
+    my $qrcode = Imager::QRCode->new(
+        size            => 10,
+        version         => 1,
+        level           => 'M',
+        casesensitive   => 1,
+        lightcolor      => Imager::Color->new(255,255,255),
+        darkcolor       => Imager::Color->new(0,0,0),
+    );
+
+    my $img = $qrcode->plot($string);
+
+    return $img;
+
+}
+
+
 get '/' => sub {
-    template 'index';
+
+    my $driver   = "SQLite";
+    my $database = "db/wf_db.db";
+    my $dsn = "DBI:$driver:dbname=$database";
+    my $userid = "";
+    my $password = "";
+    my $dbh = DBI->connect($dsn, $userid, $password, { RaiseError => 1 })
+        or die $DBI::errstr;
+
+    my $stmt = qq(select * from competitions);
+    my $sth = $dbh->prepare( $stmt );
+    my $rv = $sth->execute() or die $DBI::errstr;
+    
+    my $res;
+
+    while(my @row = $sth->fetchrow_array()) {
+        my $id = $row[0];
+        $res->{$id}->{desc} = $row[1];
+        $res->{$id}->{date} = $row[2];
+        $res->{$id}->{place} = $row[3];        
+    }
+
+    template 'index', {
+        'entries' => $res
+    };
 };
 
-get '/deploy' => sub {
-    template 'deployment_wizard', {
-		directory => getcwd(),
-		hostname  => hostname(),
-		proxy_port=> 8000,
-		cgi_type  => "fast",
-		fast_static_files => 1,
-	};
+get '/register/:id' => sub {
+
+    template 'register', {
+    };
+
 };
 
-#The user clicked "updated", generate new Apache/lighttpd/nginx stubs
-post '/deploy' => sub {
-    my $project_dir = param('input_project_directory') || "";
-    my $hostname = param('input_hostname') || "" ;
-    my $proxy_port = param('input_proxy_port') || "";
-    my $cgi_type = param('input_cgi_type') || "fast";
-    my $fast_static_files = param('input_fast_static_files') || 0;
 
-    template 'deployment_wizard', {
-		directory => $project_dir,
-		hostname  => $hostname,
-		proxy_port=> $proxy_port,
-		cgi_type  => $cgi_type,
-		fast_static_files => $fast_static_files,
-	};
+post '/register/:id' => sub {
+
+    my $user = param 'username';
+    my $telef = param 'telef';
+    my $raceID = param 'id';
+    my $qrcode = "$user::$telef";
+    my $img = generateQRCode($qrcode);
+    $img->write(file => "public/qrcodes/$qrcode.jpg");
+
+
+    my $driver   = "SQLite";
+    my $database = "db/wf_db.db";
+    my $dsn = "DBI:$driver:dbname=$database";
+    my $userid = "";
+    my $password = "";
+    my $dbh = DBI->connect($dsn, $userid, $password, { RaiseError => 1 })
+        or die $DBI::errstr;
+
+    my $stmt = qq(insert into riders (name,tnumber,qrcode) values ("$user","$telef","$qrcode"));
+    my $sth = $dbh->prepare( $stmt );
+    my $rv = $sth->execute() or die $DBI::errstr;
+
+    my $riderID = $dbh->func("last_insert_rowid");
+
+    $stmt = qq(insert into race (rider,competition,validated,check1,check2,final) values ("$riderID","$raceID","NULL","NULL","NULL","NULL"));
+    $sth = $dbh->prepare ($stmt);
+    $rv = $sth->execute() or die $DBI::errstr;  
+
+    template '/show_registration', {
+        'riderID' => $riderID,
+        'qrcode' => $qrcode,
+    }
+
+};
+
+
+get '/show_registration/:riderID/:qrcode' => sub {
+
+
 };
 
 true;

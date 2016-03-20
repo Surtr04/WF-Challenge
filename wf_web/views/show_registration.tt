@@ -1,0 +1,40 @@
+<!-- BootStrap NavBar -->
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+	<h3><a class="brand" href="[% request.uri_base %]"><img src="images/dancer_man.png"> Perl Dancer</a></h3>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Main content -->
+
+
+<!-- HEADER line -->
+<div class="container">
+
+<div class="page-header">
+	<div class="row">
+		<div class="span12">
+			<h1>Dancer Template, now with more cowbell</h1>
+		</div>
+	</div>
+</div>
+
+<h3> Foi Registado com Sucesso! </h3>
+
+O seu número de dorsal é: [% riderID %].<br>
+
+O seu QRcode é:<br>
+
+<img src="/qrcodes/[% qrcode %].jpg">
+
+<br><br><br>
+
+<a href="/">Voltar ao Início</a>
+
+
+<br><br><br>
+

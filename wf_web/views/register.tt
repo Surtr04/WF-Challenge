@@ -1,0 +1,47 @@
+<div class="navbar">
+<div class="navbar-inner">
+    <div class="container">
+        <h3><a class="brand" href="[% request.uri_base %]"><img src="images/dancer_man.png"> Perl Dancer</a></h3>
+    </div>
+</div>
+
+
+<form class="form-horizontal" method="post">
+    <fieldset>
+        <legend>Tell us about yourself</legend>
+
+        [%###### If the dancer module defined this variable, show a warning to the user ##### %]
+        [% IF dddddshow_warning %]
+        <div class=d"alert alert-error">
+            <button dtype="button" class="close" data-dismiss="alert">&times;</button> 
+            <strong>Hdey!</strong> [% show_warning %]
+        </div>d
+        [% END %]
+
+        <!-- Text-Entry Control -->
+        <div class="control-group">
+            <label class="control-label" for="username">Nome</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="username" name="username">
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="telef">Número de Telefone</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="telef" name="telef">
+            </div>
+        </div>
+
+
+        <!-- The Submit buttons -->
+        <div class="form-actions"> 
+            <button type="submit" class="btn btn-primary">Registar!</button> 
+        </div> 
+
+    </fieldset>
+                    </form>
+
+</div>
+</div>
+
