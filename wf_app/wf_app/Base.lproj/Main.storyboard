@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="brt-3z-59c">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Cronometrar-->
+        <scene sceneID="aah-5i-Ago">
+            <objects>
+                <viewController id="f1p-tX-8rt" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YcI-78-K8e"/>
+                        <viewControllerLayoutGuide type="bottom" id="gcA-Yr-t3j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="q37-cl-rWA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Cronometrar" id="Gol-gf-wbf"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="89Y-fs-wBt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-43" y="920"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Kdx-bb-NdW">
+            <objects>
+                <viewController id="4CL-eK-z5J" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ahd-dU-gWc"/>
+                        <viewControllerLayoutGuide type="bottom" id="rXD-uw-MPT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Iwd-ok-fAh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HrH-Cz-KM6">
+                                <rect key="frame" x="20" y="269" width="280" height="30"/>
+                                <state key="normal" title="Validar"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="SeH-fC-rmS"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Provas de BTT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fk0-cl-hq1">
+                                <rect key="frame" x="0.0" y="93" width="320" height="96"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="96" id="FhT-Po-BCg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Fk0-cl-hq1" firstAttribute="top" secondItem="Ahd-dU-gWc" secondAttribute="bottom" constant="29" id="9gR-LO-RSm"/>
+                            <constraint firstItem="HrH-Cz-KM6" firstAttribute="centerY" secondItem="Iwd-ok-fAh" secondAttribute="centerY" id="hgG-4m-pc2"/>
+                            <constraint firstItem="HrH-Cz-KM6" firstAttribute="leading" secondItem="Iwd-ok-fAh" secondAttribute="leadingMargin" constant="4" id="r66-Tx-rKw"/>
+                            <constraint firstItem="Fk0-cl-hq1" firstAttribute="leading" secondItem="Iwd-ok-fAh" secondAttribute="leading" id="sVW-FE-U92"/>
+                            <constraint firstItem="HrH-Cz-KM6" firstAttribute="centerX" secondItem="Iwd-ok-fAh" secondAttribute="centerX" id="teM-ap-qLe"/>
+                            <constraint firstItem="Fk0-cl-hq1" firstAttribute="centerX" secondItem="HrH-Cz-KM6" secondAttribute="centerX" id="ynE-F8-x1D"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="bCQ-wm-HTL"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bUn-ml-nFP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="489" y="260"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="iOM-5e-hC1">
+            <objects>
+                <tabBarController id="brt-3z-59c" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="pJW-QB-aVU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Xxs-aJ-wv5" kind="relationship" relationship="viewControllers" id="YIg-Sc-O9G"/>
+                        <segue destination="f1p-tX-8rt" kind="relationship" relationship="viewControllers" id="4p4-dH-Tbj"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E3k-JW-oLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-507" y="512"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="wf_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Não foi detectado nenhum QR Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Prs-2f-z6W" userLabel="Message Label">
+                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Prs-2f-z6W" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Hlf-eL-9qn"/>
+                            <constraint firstAttribute="trailing" secondItem="Prs-2f-z6W" secondAttribute="trailing" id="VKw-Xs-6hU"/>
+                            <constraint firstItem="Prs-2f-z6W" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="508" id="aRC-h4-sNK"/>
+                            <constraint firstItem="Prs-2f-z6W" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cSG-VV-s0d"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="messageLabel" destination="Prs-2f-z6W" id="wFI-hB-IcL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="909" y="260"/>
+        </scene>
+        <!--Validar-->
+        <scene sceneID="mbg-2d-DYj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xxs-aJ-wv5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Validar" id="HiS-c1-8jc"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nf0-L7-zMH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4CL-eK-z5J" kind="relationship" relationship="rootViewController" id="pWS-Gp-mzt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hri-gS-Lfu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-43" y="260"/>
+        </scene>
+    </scenes>
+</document>

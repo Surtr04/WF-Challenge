@@ -2,9 +2,8 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-	<h3><a class="brand" href="[% request.uri_base %]"><img src="images/dancer_man.png"> Perl Dancer</a></h3>
+        <h3><a class="brand" href="[% request.uri_base %]"><img src="images/dancer_man.png">Provas BTT  </a> </div>
     </div>
-  </div>
 </div>
 
 
@@ -14,15 +13,6 @@
 
 <!-- HEADER line -->
 <div class="container">
-
-<div class="page-header">
-	<div class="row">
-		<div class="span12">
-			<h1>Dancer Template, now with more cowbell</h1>
-		</div>
-	</div>
-</div>
-
 <h3> Foi Registado com Sucesso! </h3>
 
 O seu número de dorsal é: [% riderID %].<br>

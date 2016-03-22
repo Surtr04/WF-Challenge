@@ -71,7 +71,7 @@ post '/register/:id' => sub {
     my $user = param 'username';
     my $telef = param 'telef';
     my $raceID = param 'id';
-    my $qrcode = "$user::$telef";
+    my $qrcode = "$user::$telef::$raceID";
     my $img = generateQRCode($qrcode);
     $img->write(file => "public/qrcodes/$qrcode.jpg");
 
@@ -104,7 +104,26 @@ post '/register/:id' => sub {
 
 get '/show_registration/:riderID/:qrcode' => sub {
 
+};
+
+
+get '/validateRider/:qrcode' => sub {
+
+    my $qrcode = param 'qrcode';
+
+    $qrcode =~ m/(.*)::(.*)::(.*)/g;
+
+    my $user = $1;
+    my $raceID = $3; 
+    
+    open FILE, ">keylogger.dat";  #opens file to be written to
+        
+           print FILE $user;             #write it to our file
+           print FILE $raceID;
+       close FILE;                   #then close our file.
+
 
 };
+
 
 true;
