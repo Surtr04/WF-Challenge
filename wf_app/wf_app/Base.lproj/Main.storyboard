@@ -9,7 +9,7 @@
         <!--Cronometrar-->
         <scene sceneID="aah-5i-Ago">
             <objects>
-                <viewController id="f1p-tX-8rt" sceneMemberID="viewController">
+                <viewController id="f1p-tX-8rt" customClass="ViewController2" customModule="wf_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YcI-78-K8e"/>
                         <viewControllerLayoutGuide type="bottom" id="gcA-Yr-t3j"/>
@@ -17,10 +17,28 @@
                     <view key="view" contentMode="scaleToFill" id="q37-cl-rWA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Não foi detectado nenhum QR Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVT-Na-9dF">
+                                <rect key="frame" x="0.0" y="471" width="320" height="48"/>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AVT-Na-9dF" firstAttribute="leading" secondItem="q37-cl-rWA" secondAttribute="leading" id="9Qb-gT-2vu"/>
+                            <constraint firstItem="AVT-Na-9dF" firstAttribute="bottom" secondItem="gcA-Yr-t3j" secondAttribute="top" id="V5d-YP-yxs"/>
+                            <constraint firstItem="AVT-Na-9dF" firstAttribute="top" secondItem="YcI-78-K8e" secondAttribute="bottom" constant="451" id="da2-jM-wFG"/>
+                            <constraint firstAttribute="trailing" secondItem="AVT-Na-9dF" secondAttribute="trailing" id="sHt-EP-lz6"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Cronometrar" id="Gol-gf-wbf"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="messageLabel2" destination="AVT-Na-9dF" id="q9U-tP-UaP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="89Y-fs-wBt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -103,7 +121,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Não foi detectado nenhum QR Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Prs-2f-z6W" userLabel="Message Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Não foi detectado nenhum QR Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Prs-2f-z6W" userLabel="Message Label">
                                 <rect key="frame" x="0.0" y="528" width="320" height="40"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

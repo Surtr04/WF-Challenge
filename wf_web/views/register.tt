@@ -1,17 +1,17 @@
 <div class="navbar">
 <div class="navbar-inner">
     <div class="container">
-        <h3><a class="brand" href="[% request.uri_base %]"><img src="images/dancer_man.png"> Provas BTT </a></h3>
+        <h3><a class="brand" href="[% request.uri_base %]">Provas BTT </a></h3>
     </div>
 </div>
 
 
 <form class="form-horizontal" method="post">
     <fieldset>
-        <legend>Tell us about yourself</legend>
+        <legend>Por favor, insira os seus dados:</legend>
 
         [%###### If the dancer module defined this variable, show a warning to the user ##### %]
-        [% IF dddddshow_warning %]
+        [% IF show_warning %]
         <div class=d"alert alert-error">
             <button dtype="button" class="close" data-dismiss="alert">&times;</button> 
             <strong>Hdey!</strong> [% show_warning %]

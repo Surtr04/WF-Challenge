@@ -1,0 +1,52 @@
+<!-- BootStrap NavBar -->
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+	<h3><a class="brand" href="[% request.uri_base %]"> Provas de BTT</a></h3>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Main content -->
+
+
+<!-- HEADER line -->
+<div class="container">
+
+<div class="page-header">
+	<div class="row">
+	</div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Corrida</th>
+            <th>Tempo (Posto 1)</th>
+            <th>Tempo (Posto 2)</th>
+            <th>Tempo (Posto 3)</th>
+            <th>Tempo (Total) </th>
+        </tr>
+    </thead>
+    <tbody>
+[% FOREACH id IN results.keys.sort %]
+        <tr>
+            <th scope="row"></th>
+            <td> [% id %] </td>
+            <td> [% results.item(id).desc %]</td>
+            <td> [% results.item(id).t1 %]</td>
+            <td> [% results.item(id).t2 %]</td>
+            <td> [% results.item(id).t3 %]</td>
+            <td> [% results.item(id).total %] </td>
+        </tr>
+      
+[% END %]
+    </tbody>
+</table>
+
+
+

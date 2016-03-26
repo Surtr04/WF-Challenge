@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		940377A21CA44C670068A0D7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940377A11CA44C670068A0D7 /* Alamofire.framework */; };
+		940377A41CA44C730068A0D7 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 940377A11CA44C670068A0D7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9483EAE71CA06AFE00BD7650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9483EAE61CA06AFE00BD7650 /* AppDelegate.swift */; };
 		9483EAE91CA06AFE00BD7650 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9483EAE81CA06AFE00BD7650 /* ViewController.swift */; };
 		9483EAEC1CA06AFE00BD7650 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9483EAEA1CA06AFE00BD7650 /* Main.storyboard */; };
@@ -14,6 +16,7 @@
 		9483EAF11CA06AFE00BD7650 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9483EAEF1CA06AFE00BD7650 /* LaunchScreen.storyboard */; };
 		9483EAFC1CA06AFE00BD7650 /* wf_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9483EAFB1CA06AFE00BD7650 /* wf_appTests.swift */; };
 		9483EB071CA06AFE00BD7650 /* wf_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9483EB061CA06AFE00BD7650 /* wf_appUITests.swift */; };
+		94D8E5761CA0EB8100B7E1F4 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D8E5751CA0EB8100B7E1F4 /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +36,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		940377A31CA44C6C0068A0D7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				940377A41CA44C730068A0D7 /* Alamofire.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		940377A11CA44C670068A0D7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		9483EAE31CA06AFE00BD7650 /* wf_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wf_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9483EAE61CA06AFE00BD7650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9483EAE81CA06AFE00BD7650 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +64,7 @@
 		9483EB021CA06AFE00BD7650 /* wf_appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wf_appUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9483EB061CA06AFE00BD7650 /* wf_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wf_appUITests.swift; sourceTree = "<group>"; };
 		9483EB081CA06AFE00BD7650 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94D8E5751CA0EB8100B7E1F4 /* ViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				940377A21CA44C670068A0D7 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +96,7 @@
 		9483EADA1CA06AFE00BD7650 = {
 			isa = PBXGroup;
 			children = (
+				940377A11CA44C670068A0D7 /* Alamofire.framework */,
 				9483EAE51CA06AFE00BD7650 /* wf_app */,
 				9483EAFA1CA06AFE00BD7650 /* wf_appTests */,
 				9483EB051CA06AFE00BD7650 /* wf_appUITests */,
@@ -99,6 +119,7 @@
 			children = (
 				9483EAE61CA06AFE00BD7650 /* AppDelegate.swift */,
 				9483EAE81CA06AFE00BD7650 /* ViewController.swift */,
+				94D8E5751CA0EB8100B7E1F4 /* ViewController2.swift */,
 				9483EAEA1CA06AFE00BD7650 /* Main.storyboard */,
 				9483EAED1CA06AFE00BD7650 /* Assets.xcassets */,
 				9483EAEF1CA06AFE00BD7650 /* LaunchScreen.storyboard */,
@@ -135,6 +156,7 @@
 				9483EADF1CA06AFE00BD7650 /* Sources */,
 				9483EAE01CA06AFE00BD7650 /* Frameworks */,
 				9483EAE11CA06AFE00BD7650 /* Resources */,
+				940377A31CA44C6C0068A0D7 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -261,6 +283,7 @@
 			files = (
 				9483EAE91CA06AFE00BD7650 /* ViewController.swift in Sources */,
 				9483EAE71CA06AFE00BD7650 /* AppDelegate.swift in Sources */,
+				94D8E5761CA0EB8100B7E1F4 /* ViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +425,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = wf_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "WF.wf-app";
@@ -413,6 +440,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = wf_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "WF.wf-app";
@@ -487,6 +518,7 @@
 				9483EB0D1CA06AFE00BD7650 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9483EB0E1CA06AFE00BD7650 /* Build configuration list for PBXNativeTarget "wf_appTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +527,7 @@
 				9483EB101CA06AFE00BD7650 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9483EB111CA06AFE00BD7650 /* Build configuration list for PBXNativeTarget "wf_appUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +536,7 @@
 				9483EB131CA06AFE00BD7650 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

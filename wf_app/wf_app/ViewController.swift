@@ -1,5 +1,8 @@
 import UIKit
 import AVFoundation
+import Foundation
+import Alamofire
+
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -8,6 +11,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
+    
+    var userName:String?
+    
     
     let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
     
@@ -53,6 +59,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             return
         }
         
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,6 +83,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             
             if metadataObj.stringValue != nil {
                 messageLabel.text = metadataObj.stringValue
+                self.captureSession?.stopRunning()
                 validateRider(metadataObj.stringValue)
             }
         }
@@ -84,37 +92,39 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     
     
-    func validateRider (qrcode: String) {
+    func validateRider (qrcode: String) -> Void {
         
         if (qrcode.isEmpty) {
             return
         }
+
         
-        let url = "http://Ruis-MBP.lan:3000/validateRider/\(qrcode)"
-        let nsurl = NSURL(string: url)
-        
-        let request = NSMutableURLRequest(URL: nsurl!)
-        
-        request.HTTPMethod = "GET"
-        
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
-                data, response, error in
-            
-            if error != nil {
-                return
+        Alamofire.request(.GET, "http://Ruis-MBP.lan:3000/validateRider/\(qrcode)")
+            .responseJSON { response in
+                //print(response.request)  // original URL request
+                //print(response.response) // URL response
+                //print(response.data)     // server data
+                //print(response.result)   // result of response serialization
+                
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                    
+                    let r = JSON as! NSDictionary
+                    
+                    let alert = UIAlertController(title: "Provas BTT", message: "O atleta \(r.objectForKey("name") as! String) foi validado", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+                        (action: UIAlertAction!) in
+                        self.captureSession?.startRunning()
+                        alert.dismissViewControllerAnimated(true, completion: nil)
+                    }))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                    
+                    
             }
-        
         }
-        
-        task.resume()
-        
-        
-    
     }
 
-
-
-
+    
+    
 }
-
-
