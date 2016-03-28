@@ -250,29 +250,30 @@ get '/results/:idRace' => sub {
         my $check2 = DateTime::Format::DateParse->parse_datetime($row[5]);
         my $final = DateTime::Format::DateParse->parse_datetime($row[6]);
       
+        my $stmt2 = qq (select name from riders where id = $idRider);
+        my $sth2 = $dbh->prepare($stmt2);
+        my $rv2 = $sth2->execute();
 
+        my @v = $sth2->fetchrow_array();
+        my $name = $v[0];
+
+        $stmt2 = qq (select desc from competitions where id = $idRace);
+        $sth2 = $dbh->prepare($stmt2);
+        $rv2 = $sth2->execute();
+
+        @v = $sth2->fetchrow_array();
+        my $raceDesc = $v[0];
+
+
+        
         if (defined $validated and defined $check1 
                 and defined $check2 and defined $final) {
 
             my $t1 = $check1->subtract_datetime($validated) ;
             my $t2 = $check2->subtract_datetime($check1);
-            my $t3 = $final->subtract_datetime ($check2);
+            my $t3 = $final->subtract_datetime ($check2);          
 
-            my $stmt2 = qq (select name from riders where id = $idRider);
-            my $sth2 = $dbh->prepare($stmt2);
-            my $rv2 = $sth2->execute();
-
-            my @v = $sth2->fetchrow_array();
-            my $name = $v[0];
-
-            $stmt2 = qq (select desc from competitions where id = $idRace);
-            $sth2 = $dbh->prepare($stmt2);
-            $rv2 = $sth2->execute();
-
-            @v = $sth2->fetchrow_array();
-            my $raceDesc = $v[0];
-
-            my $date = DateTime::Format::Duration->new (
+                       my $date = DateTime::Format::Duration->new (
                 pattern => '%H:%M:%S'
             );
          
@@ -290,6 +291,7 @@ get '/results/:idRace' => sub {
             $results->{$name}->{t1} = "00:00:00";
             $results->{$name}->{t2} = "00:00:00";
             $results->{$name}->{t3} = "00:00:00";
+            $results->{$name}->{total} = "00:00:00";
             $results->{$name}->{desc} = $raceDesc;
 
         }

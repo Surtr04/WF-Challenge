@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		940377A21CA44C670068A0D7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940377A11CA44C670068A0D7 /* Alamofire.framework */; };
 		940377A41CA44C730068A0D7 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 940377A11CA44C670068A0D7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		940DCFDC1CA71AD0001CE5D6 /* wf_db.db in Resources */ = {isa = PBXBuildFile; fileRef = 940DCFDB1CA71AD0001CE5D6 /* wf_db.db */; };
+		940DCFDE1CA71AFD001CE5D6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 940DCFDD1CA71AFD001CE5D6 /* libsqlite3.tbd */; };
 		9483EAE71CA06AFE00BD7650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9483EAE61CA06AFE00BD7650 /* AppDelegate.swift */; };
 		9483EAE91CA06AFE00BD7650 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9483EAE81CA06AFE00BD7650 /* ViewController.swift */; };
 		9483EAEC1CA06AFE00BD7650 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9483EAEA1CA06AFE00BD7650 /* Main.storyboard */; };
@@ -51,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		940377A11CA44C670068A0D7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		940DCFDB1CA71AD0001CE5D6 /* wf_db.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = wf_db.db; sourceTree = "<group>"; };
+		940DCFDD1CA71AFD001CE5D6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		9483EAE31CA06AFE00BD7650 /* wf_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wf_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9483EAE61CA06AFE00BD7650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9483EAE81CA06AFE00BD7650 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				940DCFDE1CA71AFD001CE5D6 /* libsqlite3.tbd in Frameworks */,
 				940377A21CA44C670068A0D7 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,9 +98,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		940DCFDA1CA71A8D001CE5D6 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				940DCFDB1CA71AD0001CE5D6 /* wf_db.db */,
+			);
+			name = db;
+			sourceTree = "<group>";
+		};
 		9483EADA1CA06AFE00BD7650 = {
 			isa = PBXGroup;
 			children = (
+				940DCFDD1CA71AFD001CE5D6 /* libsqlite3.tbd */,
+				940DCFDA1CA71A8D001CE5D6 /* db */,
 				940377A11CA44C670068A0D7 /* Alamofire.framework */,
 				9483EAE51CA06AFE00BD7650 /* wf_app */,
 				9483EAFA1CA06AFE00BD7650 /* wf_appTests */,
@@ -256,6 +271,7 @@
 			files = (
 				9483EAF11CA06AFE00BD7650 /* LaunchScreen.storyboard in Resources */,
 				9483EAEE1CA06AFE00BD7650 /* Assets.xcassets in Resources */,
+				940DCFDC1CA71AD0001CE5D6 /* wf_db.db in Resources */,
 				9483EAEC1CA06AFE00BD7650 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

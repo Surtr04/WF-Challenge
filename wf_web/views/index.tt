@@ -25,8 +25,8 @@
 <h4> [% entries.item(id).desc %] </h4><br>
 <h5> [% entries.item(id).date %] </h5><br>
 <h5> [% entries.item(id).place %] </h5><br>
-
-<a href="/register/[% id %]"> "Registar" </a>
+<a href="/results/[% id %]"> Ver Resultados </a><br>
+<a href="/register/[% id %]"> Registar </a>
 
 <br><br><br>
 
