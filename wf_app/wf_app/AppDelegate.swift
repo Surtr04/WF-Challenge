@@ -7,15 +7,32 @@
 //
 
 import UIKit
+import CoreData
+import Reachability
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
+    let moc = DataController().managedObjectContext
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let reach:Reachability
+        do {
+            reach = try Reachability.reachabilityForInternetConnection()
+        }
+        catch {
+            fatalError("\(error)")
+        }
+        
+        if reach.isReachableViaWiFi() {
+            self.syncValidateServer()
+        }
+        
         return true
     }
 
@@ -40,7 +57,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    func syncValidateServer () {
+        
+        let fetch = NSFetchRequest(entityName: "Race")
+        
+        do {
+            let req =  try moc.executeFetchRequest(fetch) as! [Race]
+            
+            for record in req {
+                print (req.count)
+                print (record.qrcode!)
+                print (record.validated!)
+                print (record.check1!)
+                print (record.check2!)
+                print (record.final!)
+            
+                //Alamofire.request(.GET, "http://Ruis-MBP.local:3000/syncOfflineData/\(record.qrcode!)/\(record.validated!)/\(record.check1!)/\(record.check2!)/\(record.final!)")
+                 //   .responseJSON { response in
+                  //      let JSON = response.result.value
+                   //     print("JSON: \(JSON)")
+                        
+                //}
+                moc.deleteObject(record)
+                try moc.save()
+            }
+        }
+        catch {
+            fatalError("\(error)")
+        }
+        
+        
+    }
+    
 
 }
-

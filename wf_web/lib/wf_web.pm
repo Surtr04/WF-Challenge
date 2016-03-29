@@ -304,4 +304,31 @@ get '/results/:idRace' => sub {
 
 };
 
+get '/syncOfflineData/:qrcode/:validated/:check1/:check2/:final' => sub {
+  
+    my $qrcode = param 'qrcode';
+    my $validated = param 'validated';
+    my $check1 = param 'check1';
+    my $check2 = param 'check2';
+    my $final = param 'final';
+
+   
+    my $driver = "SQLite";
+    my $database = "db/wf_db.db";
+    my $dsn = "DBI:$driver:dbname=$database";
+    my $userid = "";
+    my $password = "";
+    my $dbh = DBI->connect($dsn,$userid,$password, { RaiseError => 1}) or die $DBI::errstr;
+
+    
+   print "$qrcode + $validated + $check1 + $check2 + $final"; 
+
+
+   status_ok( {results => "OK"} );
+
+};
+
+
+
+
 true;

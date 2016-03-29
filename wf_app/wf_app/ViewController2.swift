@@ -1,6 +1,8 @@
 import UIKit
 import AVFoundation
 import Alamofire
+import CoreData
+import Reachability
 
 class ViewController2: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -10,11 +12,14 @@ class ViewController2: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
     
+    let moc = DataController().managedObjectContext
+    
     let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+                        
         
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
@@ -78,7 +83,23 @@ class ViewController2: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
             if metadataObj.stringValue != nil {
                 messageLabel2.text = metadataObj.stringValue
                 self.captureSession?.stopRunning()
-                setTime(metadataObj.stringValue)
+                
+                
+                let reach:Reachability
+                do {
+                    reach = try Reachability.reachabilityForInternetConnection()
+                }
+                catch {
+                    fatalError("\(error)")
+                }
+
+                
+                if reach.isReachableViaWiFi() {
+                    setTime(metadataObj.stringValue)
+                }
+                else {
+                    offlineSetTime(metadataObj.stringValue)
+                }
             }
         }
     }
@@ -91,12 +112,8 @@ class ViewController2: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         }
         
         
-        Alamofire.request(.GET, "http://Ruis-MBP.lan:3000/setTime/\(qrcode)")
-            .responseJSON { response in
-                //print(response.request)  // original URL request
-                //print(response.response) // URL response
-                //print(response.data)     // server data
-                //print(response.result)   // result of response serialization
+        Alamofire.request(.GET, "http://Ruis-MBP.local:3000/setTime/\(qrcode)")
+            .responseJSON { response in                
                 
                 if let JSON = response.result.value {
                     print("JSON: \(JSON)")
@@ -130,6 +147,41 @@ class ViewController2: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
                 
         }
     
+    }
+    
+    
+    func offlineSetTime (qrcode:String) -> Void {
+        
+        let fetch = NSFetchRequest(entityName: "Race")
+        
+        
+        do {
+            fetch.predicate = NSPredicate(format: "qrcode == %@", qrcode)
+            let req =  try moc.executeFetchRequest(fetch) as! [Race]
+            
+            let req2 = req.first
+            
+            if ((req2!.check1?.isEmpty) != nil) {
+                req2!.check1 = NSDate().timeIntervalSince1970.description
+            }
+            else {
+                if ((req2!.check2?.isEmpty) != nil) {
+                    req2!.check2 = NSDate().timeIntervalSince1970.description
+                }
+                else {
+                    if ((req2!.final?.isEmpty) != nil) {
+                        req2!.final = NSDate().timeIntervalSince1970.description
+                    }
+                }
+            }
+            
+                try moc.save()
+            }
+        catch {
+            fatalError("\(error)")
+        }
+        
+        self.captureSession?.startRunning()
     }
 
 

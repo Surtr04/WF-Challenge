@@ -2,7 +2,8 @@ import UIKit
 import AVFoundation
 import Foundation
 import Alamofire
-
+import CoreData
+import Reachability
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -14,11 +15,14 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     var userName:String?
     
+    let moc = DataController().managedObjectContext
+    
     
     let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
@@ -84,7 +88,21 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             if metadataObj.stringValue != nil {
                 messageLabel.text = metadataObj.stringValue
                 self.captureSession?.stopRunning()
-                validateRider(metadataObj.stringValue)
+                
+                let reach:Reachability
+                do {
+                    reach = try Reachability.reachabilityForInternetConnection()
+                }
+                catch {
+                    fatalError("\(error)")
+                }
+                
+                if reach.isReachableViaWiFi() {
+                    validateRider(metadataObj.stringValue)
+                }
+                else {
+                    offlineValidateRider(metadataObj.stringValue)
+                }
             }
         }
     }
@@ -98,13 +116,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             return
         }
 
-        
-        Alamofire.request(.GET, "http://Ruis-MBP.lan:3000/validateRider/\(qrcode)")
+        Alamofire.request(.GET, "http://Ruis-MBP.local:3000/validateRider/\(qrcode)")
             .responseJSON { response in
-                //print(response.request)  // original URL request
-                //print(response.response) // URL response
-                //print(response.data)     // server data
-                //print(response.result)   // result of response serialization
                 
                 if let JSON = response.result.value {
                     print("JSON: \(JSON)")
@@ -119,12 +132,61 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                     }))
                     self.presentViewController(alert, animated: true, completion: nil)
                     
-                    
-                    
-            }
+                }
+                
+                
+            
         }
     }
-
+    
+    
+    func offlineValidateRider (qrcode:String) -> Void {
+     
+        let moc = DataController().managedObjectContext
+        let entity = NSEntityDescription.insertNewObjectForEntityForName("Race", inManagedObjectContext: moc) as! Race
+       
+        let time = NSDate().timeIntervalSince1970.description
+        
+        entity.setValue(qrcode, forKey: "qrcode")
+        entity.setValue(time, forKey: "validated")
+     
+        do {
+           try moc.save()
+        }
+        catch {
+            fatalError("Failure to save context: \(error)")
+        }
+        
+        self.captureSession?.startRunning()
+        
+    }
+    
+    
+    
+        
+    
+    
+    func showData () {
+        
+        let fetch = NSFetchRequest(entityName: "Race")
+        
+        do {
+            let req =  try moc.executeFetchRequest(fetch) as! [Race]
+            
+            for record in req {
+                print ("\(record.qrcode!) + \(record.validated) + \(record.check1) + \(record.check2) + \(record.final)" )
+            }
+            print (req.count)
+        }
+        catch {
+            fatalError("\(error)")
+        }
+        
+        
+    }
+    
+    
+    
     
     
 }
